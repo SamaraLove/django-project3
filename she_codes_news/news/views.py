@@ -1,5 +1,14 @@
 from django.views import generic
+from django.urls import reverse_lazy
 from .models import NewsStory
+from .forms import StoryForm
+
+
+class AddStoryView(generic.CreateView):
+    form_class = StoryForm
+    context_object_name = 'storyForm'
+    template_name = 'news/createStory.html'
+    success_url =reverse_lazy('news:index')
 
 
 class IndexView(generic.ListView):
@@ -14,7 +23,6 @@ class IndexView(generic.ListView):
         context['latest_stories'] = NewsStory.objects.all()[:4]
         context['all_stories'] = NewsStory.objects.all()
         return context
-
 
 class StoryView(generic.DetailView):
     model = NewsStory
