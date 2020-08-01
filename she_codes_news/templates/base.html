@@ -12,9 +12,6 @@
         <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
         {% block stylesheets %}{% endblock %}
 
-        <script type="text/javascript" src="{% static '/admin/js/core.js' %}"></script>
-        <link rel="stylesheet" type="text/css" href="{% static '/admin/css/widgets.css' %}">
-
     </head>
 
     <body>
@@ -29,6 +26,6 @@
         </header>
 
         <!-- content blocks here -->
-        {% block content %}{% endblock %} 
+        {% block content %}{% endblock %}
     </body>
 </html>
