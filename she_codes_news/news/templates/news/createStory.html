@@ -6,13 +6,8 @@
     {% csrf_token %}
     {{form.media}}
     {{form.as_p}}
-    <input type="submit" value="submit">
+    <input type="submit" value="submit" id="submit-button">
 
 </form>
-<script>
-// $(".datepicker").datepicker();
-// $(".timepicker").timepicker();
-
-</script>
 
 {% endblock %}

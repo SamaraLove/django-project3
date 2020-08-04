@@ -23,6 +23,9 @@
     grid-area: left-1;
 }
 
+#story-card-1 img {
+    object-fit: contain;
+}
 #story-card-2 {
     grid-area: right-1;
 }
