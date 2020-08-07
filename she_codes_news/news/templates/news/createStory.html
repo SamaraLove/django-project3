@@ -2,6 +2,8 @@
 
 {% block content %}
 
+
+{% if user.is_authenticated %}
 <form action= "" method="post">
     {% csrf_token %}
     {{form.media}}
@@ -9,5 +11,12 @@
     <input type="submit" value="submit" id="submit-button">
 
 </form>
+{% else %}
+<p> Please login or create an account to write a news story </p>
+<a href="{% url 'login' %}">Login</a><br><br>
+<a href="{% url 'users:createAccount' %}">Create Account</a>
+{% endif %}
+
+
 
 {% endblock %}
