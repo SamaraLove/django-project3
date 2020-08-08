@@ -2,21 +2,24 @@
 
 {% block content %}
 
-
 {% if user.is_authenticated %}
-<form action= "" method="post">
-    {% csrf_token %}
-    {{form.media}}
-    {{form.as_p}}
-    <input type="submit" value="submit" id="submit-button">
+<div id="create-form">
+    <form action= "" method="post">
+        {% csrf_token %}
+        {{form.media}}
+        {{form.as_p}}
+        <input type="submit" value="submit" class="submit-button">
+    </form>
+</div>
 
-</form>
 {% else %}
-<p> Please login or create an account to write a news story </p>
-<a href="{% url 'login' %}">Login</a><br><br>
-<a href="{% url 'users:createAccount' %}">Create Account</a>
+
+<div id="createStory-text">
+    <br><p> Please login or create an account to write a news story.</p>
+    <a href="{% url 'login' %}">Login</a><br><br><br>
+    <a href="{% url 'users:createAccount' %}">Create Account</a>
+</div>
+
 {% endif %}
-
-
 
 {% endblock %}

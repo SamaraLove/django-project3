@@ -12,12 +12,15 @@ class CustomUserCreationForm(UserCreationForm):
         widgets = {
             'birth_date': forms.DateInput(format = ('%m/%d/%Y'),
                 attrs = {'class': 'form-item',
+                    'id': 'form-birth_date',
                     'placeholder': 'Select a date',
                     'type': 'date'
                 }
             ),
-            'bio': forms.TextInput(attrs={'size': 10,  'id': 'form-bio','class': "form-item",'placeholder': 'Enter a brief description',}
-            ),           
+            'bio': forms.Textarea(attrs={'size': 10,  'id': 'form-bio','class': "form-item",'placeholder': 'Enter a short bio about yourself',}
+            ),   
+            'location': forms.TextInput(attrs={'id': 'form-location','class': "form-item",'placeholder': 'Enter a your city name',}
+            ),            
         }
 
     # class ProfileForm()
@@ -35,7 +38,7 @@ class CustomUserChangeForm(UserChangeForm):
                     'type': 'date'
                 }
             ),
-            'bio': forms.TextInput(attrs={'size': 10,  'id': 'form-bio','class': "form-item",'placeholder': 'Enter a brief description',}
+            'bio': forms.Textarea(attrs={'size': 10,  'id': 'form-bio','class': "form-item",'placeholder': 'Enter a brief description',}
             ),           
         }
      

@@ -32,9 +32,12 @@ h3 {
 }
 
 #header-text {
-    flex-basis: 90%;
+    padding-left: 20%;
+    flex-basis: 60%;
     display: flex;
     justify-content: center;
+    /* if small on phone, left align header text */
+    /* Change at 1200 */
 }
 
 #New-Story {
@@ -46,8 +49,11 @@ h3 {
     color: #DFC5FE;
 }
 
+#createStory-text {
+    text-align: center;
+}
 nav {
-    flex-basis: 10%;
+    flex-basis: 20%;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -64,57 +70,58 @@ a, p {
     font-size: 30px;
 }
 
-
 form {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
     padding: 5px;
 }
 
 form label { 
-    padding-right: 20px;
-    /* flex-basis: 200px; */
-    /* font-size: 30px; */
+    /* label tag doesn't have the property 'width' */
+    display: inline-block;
+    width: 300px;
+    padding-right: 40px;
+    align-items: left;
+    color: darkcyan;
+    align-items: center;
 }
 
 .form-item {
-    align-items: left;
+    align-items: center;
 }
 
 #form-content{
     min-height: 120px;
 }
-form p {
+/* form p {
     display: flex;
-    /* justify-content: center; */
-    align-items: left;
-    padding: 10px;
-    /* width: 800px;  */
-    flex-basis: 50%;
-    min-width: 600px;
-}
+    justify-content: center;    
+} */
 
 /* .form-item input{
     min-width: 400px;
 
 } */
 
-#form-author, #form-content, #form-author, #form-title, #form-link, #form-date {
-    min-width: 405px;
+#form-author, #form-content, #form-author, #form-title, #form-link, #form-date, #form-time {
+    min-width: 605px;
 }
 
-form input{
-    flex-basis: 20%;
+#form-link {
+    min-width: 800px; 
+}
+
+form input, textarea {
     border: 4px solid #DFC5FE;
     background-color: #FFF;
     /* padding: 5px; */
     font-size: 18px;
     border-radius: 5px;
-    min-width: 200px;
-    min-height: 40px;
+    min-height: 40px; 
+    width: 300px;
 }
 
 
@@ -122,14 +129,39 @@ form input:hover{
     border: 4px solid #818181;
 }
 
-#submit-button {
+.submit-button {
     margin-top: 10px;
     width: 400px;
     border-radius: 5px;
     box-shadow: 3px 3px 3px #000;
+    border: 4px solid #DFC5FE;
+    background-color: #FFF;
+    min-height: 40px;
+    font-size: 30px;
 }
-#submit-button:hover {
+.submit-button:hover {
     border: 4px solid #818181;
     background-color: #DFC5FE;
     color: #FFF;
+}
+
+.form-login p {
+    /* justify-content: center; */
+    /* align-items: center; */
+}
+
+#login-p {
+    text-align: center; 
+}
+
+#create-account-p{
+    text-align: center; 
+}
+
+/* .helptext {
+    display: none;
+} */
+
+form ul {
+    display: none;
 }

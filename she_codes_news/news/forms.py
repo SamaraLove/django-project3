@@ -15,7 +15,7 @@ class StoryForm(ModelForm):
 			# type date tells django to use the HTML5 date input
             time_attrs={'type': 'time', 'class': "form-item", 'id': 'form-time'},
 			# type time tells django to use the HTML5 time input
-            # attrs={'class': "form-item",'id': 'form-date'},
+            # default=timezone.now
         )
         
     )
@@ -33,7 +33,7 @@ class StoryForm(ModelForm):
                 ),
             # 'author': forms.TextInput(attrs={'size': 10,  'id': 'form-author','class': "form-item",'placeholder': 'Your name',}
             # ),
-            'content': forms.TextInput(attrs={'size': 10,  'id': 'form-content','class': "form-item",'placeholder': 'Enter a rivoting story',}
+            'content': forms.Textarea(attrs={'size': 10,  'id': 'form-content','class': "form-item",'placeholder': 'Enter a rivoting story',}
             ),
             'image_link': forms.TextInput(attrs={'size': 10, 'id': 'form-link','class': "form-item",'placeholder': 'Enter URL to a direct image. If the link does not directly show an image, a random one will be chosen for you',})
             # forces you to upload with url

@@ -2,6 +2,11 @@ from django.views import generic
 from django.urls import reverse_lazy
 from .models import NewsStory
 from .forms import StoryForm
+from django.contrib.auth import get_user_model
+
+
+
+User = get_user_model()
 
 
 class AddStoryView(generic.CreateView):
@@ -19,16 +24,29 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         '''Return all news stories.'''
-        return NewsStory.objects.all()
+        return NewsStory.objects.all()        
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['latest_stories'] = NewsStory.objects.all().order_by('-pub_date')[:4]
+        # context['latest_stories'] = NewsStory.objects.all().order_by('author')[:4]
         context['all_stories'] = NewsStory.objects.all().order_by('-pub_date')
+        context['all_users'] = User.objects.all().order_by('username')
         return context
 
 class StoryView(generic.DetailView):
     model = NewsStory
     template_name = 'news/story.html'
     context_object_name = 'story'
+
+class userList(generic.ListView):
+    model = User
+
+class userStory(generic.DetailView):
+    model = User
+    template_name = 'news/user-story.html'
+
+    # def get_queryset(self):
+    #     '''Return all news stories.'''
+    #     return NewsStory.objects.all()        
 

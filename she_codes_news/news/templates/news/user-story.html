@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}    
+
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css" href="{% static 'news/styles.css' %}">
+{% endblock %}
+
+{% block content %}
+
+
+
+<div id="all-stories">
+    {% if object.stories %}
+
+        {% for story in object.stories.all %}
+            {% include "./storyCard.html" with story=story %}
+        {% endfor %}
+
+    {% else %}
+
+        <p>No stories have been written by {{object}}.</p>
+
+    {% endif %}
+</div>
+
+
+
+
+
+{% endblock %}

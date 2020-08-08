@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}    
+
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css" href="{% static 'news/styles.css' %}">
+{% endblock %}
+
+{% block content %}
+
+
+<div>
+    <ul>
+        {% for user_obj in object_list %}
+        <li>
+            <!-- {{user_obj}}  -->
+            <a href="{% url 'news:userStory' user_obj.id %}">{{user_obj}}</a>
+        </li>
+        {% endfor %}
+    </ul>
+
+</div>
+
+{% endblock %}

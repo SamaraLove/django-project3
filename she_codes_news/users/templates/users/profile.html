@@ -14,11 +14,12 @@
     <p> Hi {{ request.user }} </p><br>
     <p> {{ user.username }}</p> <br>
     <p> {{ request.user.email }}</p>
+    <p> {{ user.email }}</p>
     <!-- <img src="images/{{user.get_profile.avatar }}"> -->
     </div>
     {% else %}
     <div id="user-create"></div>
-        <a href="{% url 'login' %}">Please login to do write news stories</a>
+        <a href="{% url 'login' %}">Please login or create an account to write a news story.</a>
         <a href="{% url 'users:createAccount' %}">Create Account</a>
 
     </div>

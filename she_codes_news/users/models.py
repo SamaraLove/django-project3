@@ -6,7 +6,6 @@ from django.contrib.auth.models import AbstractUser
 class CustomUser(AbstractUser):
 
     #where you add bios, profile pics, custom features
-    # bio
     # 
     # name = models.CharField(max_length=100)
     bio = models.TextField(max_length=500, blank=True)
