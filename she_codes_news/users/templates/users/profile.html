@@ -9,14 +9,37 @@
 
     {% if user.is_authenticated %}
     <div id="user-profile">
-    <h2> Hi {{ request.user }}! </h2><br>
-    <p> Name: {{ request.user }} </p><br>
-    <p> Username: {{ user.username }}</p> <br>
-    <p> Email: {{ user.email }}</p><br>
-    <p> Birth date: {{ user.birth_date }} </p><br>
-    <p> Location: {{ user.location }} </p><br>
+        <h2> Account Profile </h2><br>
+
+        <h3> Hi {{ request.user }}! </h3><br>
+        <p> Username: {{ user.username }}</p> <br>
+        <p> Name: {{ request.user.first_name }} </p><br>
+        <p> Name: {{ request.user.last_name }} </p><br>
+        <p> Date joined: {{ user.date_joined }}</p> <br>
+
+        <!-- <p> Username: {{ user.username }}</p> <br>
+        <p> Email: {{ user.email }}</p><br>
+        <p> Birth date: {{ user.birth_date }} </p><br>
+        <p> Location: {{ user.location }} </p><br> -->
 
     <!-- <img src="images/{{user.get_profile.avatar }}"> -->
+
+            <p>
+                <a href="{% url 'password_change' %}">Change Password</a><br> <br>
+            </p>
+
+
+        <div id="form-editaccount">    
+            <h2> Edit your details </h2>
+            <p id="edit-account-p"></p>  
+            <form method ="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" id="submit-button">Save Changes</button>
+            </form>
+        </div>
+
+
     </div>
     {% else %}
     <div id="user-create"></div>

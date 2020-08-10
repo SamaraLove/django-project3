@@ -2,6 +2,8 @@
 
 body {
     background-color: rgb(240, 239, 239);
+    font-family: monospace;
+
 }
 
 header {
@@ -70,6 +72,10 @@ a, p {
     font-size: 30px;
 }
 
+/* ################################################################################################################################## */
+/* FORMS */
+/* ################################################################################################################################## */
+
 form {
     display: flex;
     flex-wrap: wrap;
@@ -82,9 +88,8 @@ form {
 form label { 
     /* label tag doesn't have the property 'width' */
     display: inline-block;
-    width: 300px;
-    padding-right: 40px;
-    align-items: left;
+    width: 250px;
+    padding-right: 5px;
     color: darkcyan;
     align-items: center;
 }
@@ -96,23 +101,20 @@ form label {
 #form-content{
     min-height: 120px;
 }
-/* form p {
-    display: flex;
-    justify-content: center;    
-} */
 
-/* .form-item input{
-    min-width: 400px;
-
-} */
-
-#form-author, #form-content, #form-author, #form-title, #form-link, #form-date, #form-time {
-    min-width: 605px;
+#form-author, #form-content, #form-author, #form-title, #form-link {
+    min-width: 705px;
 }
 
-#form-link {
-    min-width: 800px; 
+#id_pub_date_0.form-item , #id_pub_date_1.form-item , #form-birth_date.form-item {
+    text-align: center;
+    /* max-width: 200px; */
 }
+
+#id_username, #id_email, #form-bio, #form-location, #id_password1, #id_password2, #id_password {
+    min-width: 705px;
+}
+
 
 form input, textarea {
     border: 4px solid #DFC5FE;
@@ -121,47 +123,58 @@ form input, textarea {
     font-size: 18px;
     border-radius: 5px;
     min-height: 40px; 
-    width: 300px;
+    width: 350px;
 }
-
 
 form input:hover{
     border: 4px solid #818181;
 }
+form textarea:hover{
+    border: 4px solid #818181;
+}
 
-.submit-button {
+#submit-button {
     margin-top: 10px;
-    width: 400px;
+    width: 100%;
     border-radius: 5px;
     box-shadow: 3px 3px 3px #000;
     border: 4px solid #DFC5FE;
     background-color: #FFF;
     min-height: 40px;
     font-size: 30px;
+    font-family: monospace;
 }
-.submit-button:hover {
+#submit-button:hover {
     border: 4px solid #818181;
     background-color: #DFC5FE;
     color: #FFF;
 }
 
-.form-login p {
-    /* justify-content: center; */
-    /* align-items: center; */
-}
-
-#login-p {
+#create-account-p, #login-p{
     text-align: center; 
 }
 
-#create-account-p{
-    text-align: center; 
-}
-
-/* .helptext {
+.helptext {
     display: none;
-} */
+}
 
 form ul {
+    display: none;
+}
+
+#create-form, #form-login, #form-createaccount {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+}
+
+div #id_password {
+    display: none;
+}
+#id_password {
+    display: none;
+}
+p label #id_password {
     display: none;
 }

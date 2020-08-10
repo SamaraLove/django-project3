@@ -7,16 +7,19 @@
 
 {% block content %}
 
-<div class="form-login">
+<div id="form-login">
 
     <h2>Login</h2>
     <form method="post">
         {% csrf_token %}
         {{form.as_p}}
-        <button type="submit" class="submit-button">Login</button>
+        <button type="submit" id="submit-button">Login</button>
     </form>
     
-    <p id="login-p"> Don't have an account?
+    <p id="login-p"> 
+        Forgot your password? <a href="{% url 'password_reset' %}">Reset Password here</a><br><br>
+
+        Don't have an account?
         <a href="{% url 'users:createAccount' %}">Create account here</a>
     
     </p>

@@ -13,4 +13,11 @@ class CustomUserAdmin(UserAdmin):
     list_display = ['email', 'username']
 
 
+    # add_fieldsets = (
+    #     (None, {
+    #         'classes': ('wide',),
+    #         'fields': ('bio', 'birth_date', 'location','password1', 'password2')}
+    #         ),
+    # )
+
 admin.site.register(CustomUser, CustomUserAdmin)
