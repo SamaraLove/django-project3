@@ -2,19 +2,20 @@
 {% load static %}    
 
 {% block stylesheets %}
-<!-- <link rel="stylesheet" type="text/css" href="{% static 'news/styles.css' %}"> -->
+<link rel="stylesheet" type="text/css" href="{% static 'news/styles.css' %}">
 {% endblock %}
 
 {% block content %}
 
-
     {% if user.is_authenticated %}
     <div id="user-profile">
-    <!-- <p> Hi {{ request.user.birth_date }} </p><br> -->
-    <p> Hi {{ request.user }} </p><br>
-    <p> {{ user.username }}</p> <br>
-    <p> {{ request.user.email }}</p>
-    <p> {{ user.email }}</p>
+    <h2> Hi {{ request.user }}! </h2><br>
+    <p> Name: {{ request.user }} </p><br>
+    <p> Username: {{ user.username }}</p> <br>
+    <p> Email: {{ user.email }}</p><br>
+    <p> Birth date: {{ user.birth_date }} </p><br>
+    <p> Location: {{ user.location }} </p><br>
+
     <!-- <img src="images/{{user.get_profile.avatar }}"> -->
     </div>
     {% else %}
@@ -24,7 +25,5 @@
 
     </div>
     {% endif %}
-    
-    
 
 {% endblock %}

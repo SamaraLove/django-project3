@@ -12,7 +12,6 @@
     <ul>
         {% for user_obj in object_list %}
         <li>
-            <!-- {{user_obj}}  -->
             <a href="{% url 'news:userStory' user_obj.id %}">{{user_obj}}</a>
         </li>
         {% endfor %}
