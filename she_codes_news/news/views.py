@@ -4,10 +4,7 @@ from .models import NewsStory
 from .forms import StoryForm
 from django.contrib.auth import get_user_model
 
-
-
 User = get_user_model()
-
 
 class AddStoryView(generic.CreateView):
     form_class = StoryForm
@@ -46,7 +43,23 @@ class userStory(generic.DetailView):
     model = User
     template_name = 'news/user-story.html'
 
+    slug_field = "username"
+    slug_url_kwarg = "username"
+
+
+class CategoryView(generic.DetailView):
+    model = User
+    template_name = 'news/category.html'
+
+    # slug_field = "cat_field"
+    # slug_url_kwarg = "cat_field"
+    # slug_field = "username"
+    # slug_url_kwarg = "username"
     # def get_queryset(self):
     #     '''Return all news stories.'''
     #     return NewsStory.objects.all()        
 
+
+#    def get_success_url(self):
+        # return reverse_lazy("users:profile", kwargs={"username": self.request.user.username})
+                # <a href="{% url 'users:profile' user.username %}">{{ user.username }}</a>

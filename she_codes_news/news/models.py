@@ -13,6 +13,7 @@ class NewsStory(models.Model):
     pub_date = models.DateTimeField()
     content = models.TextField()
     image_link = models.URLField(default = "", max_length=400)
+    
 
     # def __str__(self):
     #     return self.title

@@ -11,7 +11,7 @@
     <h2>{{ story.title }}</h2>
     <!-- <h4>{{ story.author }}</h4> -->
     <h4> 
-        <a href="{% url 'news:userStory' story.author.id %}">{{story.author}}</a>
+        <a href="{% url 'news:userStory' story.author %}">{{story.author}}</a>
     </h4>
 
 
