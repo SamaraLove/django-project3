@@ -13,7 +13,12 @@
     <h4> 
         <a href="{% url 'news:userStory' story.author %}">{{story.author}}</a>
     </h4>
-
+    <h4>Category: 
+        <a href="{% url 'news:categoryStory' story.category_type %}">{{story.category_type}}</a></h4>
+    
+    {% if user.is_authenticated %}
+        <p><a href="{% url 'news:userStory_edit' story.id %}">Edit</a></p>
+    {% endif %}
 
     <div id="story-content">
         <!-- <img src="{% static '/news/images/placeholder-5.jpg' %}"> -->

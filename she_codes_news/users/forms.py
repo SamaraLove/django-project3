@@ -61,8 +61,6 @@ class CustomUserChangeForm(UserChangeForm):
                 # 'is_staff': forms.HiddenInput(),
             }
 
-
-
     def __init__(self, *args, **kwargs):
         super(CustomUserChangeForm, self).__init__(*args, **kwargs)
         self.fields['password'].help_text = self.fields['password'].help_text.format('../password/')

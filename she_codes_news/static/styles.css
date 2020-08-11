@@ -81,7 +81,7 @@ form {
     flex-wrap: wrap;
     flex-direction: column;
     justify-content: center;
-    /* align-items: center; */
+    align-items: center;
     padding: 5px;
 }
 
@@ -168,7 +168,7 @@ form ul {
     flex-direction: column;
     align-items: center;
 }
-
+/* 
 div #id_password {
     display: none;
 }
@@ -177,4 +177,4 @@ div #id_password {
 }
 p label #id_password {
     display: none;
-}
+} */

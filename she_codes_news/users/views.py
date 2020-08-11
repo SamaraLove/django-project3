@@ -19,6 +19,10 @@ class CreateAccountView(generic.edit.CreateView):
 
 # class UserProfileView(generic.TemplateView):
 class UserProfileView(generic.edit.UpdateView):
+    #     """
+#     Processes requests for the settings page, where users
+#     can edit their profiles.
+#     """
     model = User
     form_class = CustomUserChangeForm
     template_name = 'users/profile.html'
@@ -29,16 +33,16 @@ class UserProfileView(generic.edit.UpdateView):
     slug_field = "username"
     slug_url_kwarg = "username"
 
-    def get_object(self):
+    # def get_object(self):
 
-        object = get_object_or_404(User, username=self.kwargs.get("username"))
+    #     object = get_object_or_404(User, username=self.kwargs.get("username"))
 
-        # only owner can view their page
-        if self.request.user.username == object.username:
-            return object
-        else:
-            # redirect to 404 page
-            print("you are not the owner!!")
+    #     # only owner can view their page
+    #     if self.request.user.username == object.username:
+    #         return object
+    #     else:
+    #         # redirect to 404 page
+    #         print("you are not the owner!!")
  
 # @login_required 
 # def profile(request, template_name = 'users/profile.html'):

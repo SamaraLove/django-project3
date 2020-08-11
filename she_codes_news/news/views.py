@@ -1,8 +1,11 @@
 from django.views import generic
 from django.urls import reverse_lazy
 from .models import NewsStory
-from .forms import StoryForm
+from .forms import StoryForm, UpdateStoryForm
 from django.contrib.auth import get_user_model
+from django.shortcuts import get_object_or_404
+from django.views import generic
+from django.db.models import Count, F, Value
 
 User = get_user_model()
 
@@ -46,20 +49,39 @@ class userStory(generic.DetailView):
     slug_field = "username"
     slug_url_kwarg = "username"
 
-
-class CategoryView(generic.DetailView):
-    model = User
+class categoryStoryView(generic.DetailView):
+    model = NewsStory
     template_name = 'news/category.html'
+    context_object_name = 'story'
 
-    # slug_field = "cat_field"
-    # slug_url_kwarg = "cat_field"
-    # slug_field = "username"
-    # slug_url_kwarg = "username"
-    # def get_queryset(self):
-    #     '''Return all news stories.'''
-    #     return NewsStory.objects.all()        
+    slug_field = "category_type"
+    slug_url_kwarg = "category_type"
+
+class StoryViewEdit(generic.edit.UpdateView):
+    form_class = UpdateStoryForm
+    context_object_name = 'storyForm'
+
+    model = NewsStory
+    template_name = 'news/edit.html'
+    context_object_name = 'story'
+
+    success_url =reverse_lazy('news:index')
+
+    # def form_valid(self, form):
+    #     form.instance.author = self.request.user
+    #     return super().form_valid(form)
+
+    # def post(self, request, *args, **kwargs):
+    #     object = get_object_or_404(NewsStory, author=self.kwargs.get("author"))
+    #     if request.method == 'POST':
+    #         form = self.form_class(request.POST, instance=order)
+    #         if form.is_valid():
+    #             form.save()
+    #             return redirect('news:story')
+    #     else:
+    #         form = PostForm(instance=post)
+    #     return render(request, self.template_name, {'form': form})
 
 
-#    def get_success_url(self):
-        # return reverse_lazy("users:profile", kwargs={"username": self.request.user.username})
-                # <a href="{% url 'users:profile' user.username %}">{{ user.username }}</a>
+# https://samulinatri.com/blog/django-modelform-tutorial/
+            # form = PostForm(request.POST)
