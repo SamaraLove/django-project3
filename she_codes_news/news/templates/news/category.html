@@ -10,32 +10,41 @@
 
 
 <div id="all-stories">
-    <p>Category: {{story.category_type}}</p><br><br>
-    <p>
-        story.objects.annotate(num_products=Count('story.category_type'))
-        Num = Count('story.category_type')
-    </p>
+    <p>Category: {{story.category_type}}<br>
+        There are {{story.Category_CHOICES|length}} categories. <br>
+        {{story.choice_type|length}} stories have been categorised as {{story.category_type}}<br>
+        Title: {{object.title}}
+        category_type: {{object.category_type}}
+    </p><br><br>
 
 
-    <p>There are {{ Num }} stories categorised as {{story.category_type}} </p>
+    {{stories.all|length}}
 
-    {% if story.category_type %}
+        {% for category in story.Category_CHOICES %}
+            {{story.category_type}}
+        {% endfor %}
 
-        {% for story in stories.all %}
-            loop: {{ forloop.counter }}
+    {% for category in story.Category_CHOICES %}
+        {{category}}
+    {% endfor %}
 
+
+    {% if object.stories %}
+
+        {% for story in object.stories.all %}
             {% include "./storyCard.html" with story=story %}
         {% endfor %}
+
     {% else %}
-    {% endif %}
-        <p>No stories have been written with the category {{story.category_type}}.</p>
+        <p>There are no stories categorised as {{story.category_type}} </p>
+     {% endif %}
+    <!-- {% for category in categories %}
+        <a href="#"><h3>{{ category }}</h3></a>
+    {% endfor %} -->
+
 
 </div>
 
 {% endblock %}
-<!-- I also have list_articles = Articles.objects.filter(author_id = author_id) -->
-<!-- # context['latest_stories'] = NewsStory.objects.all().order_by('author')[:4] -->
-
-
 
 

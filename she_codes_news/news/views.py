@@ -1,7 +1,7 @@
 from django.views import generic
 from django.urls import reverse_lazy
 from .models import NewsStory
-from .forms import StoryForm, UpdateStoryForm
+from .forms import StoryForm, UpdateStoryForm, DeleteStoryForm
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
 from django.views import generic
@@ -29,10 +29,55 @@ class IndexView(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['latest_stories'] = NewsStory.objects.all().order_by('-pub_date')[:4]
-        # context['latest_stories'] = NewsStory.objects.all().order_by('author')[:4]
         context['all_stories'] = NewsStory.objects.all().order_by('-pub_date')
+        # context['all_stories'] = NewsStory.objects.all().order_by('-category_type')
         context['all_users'] = User.objects.all().order_by('username')
         return context
+
+class StoryFilterView(generic.ListView):
+    template_name = 'news/index.html'
+    context_object_name = 'all_stories'
+
+    def get_queryset(self):
+        '''Return all news stories.'''
+        qs = NewsStory.objects.all()   
+        q = self.request.GET.get("category")
+        if q: 
+            qs = qs.filter(category_type=q)
+        return qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = StoryForm
+        print(context)
+        return context
+
+
+
+class CategoryHome(generic.ListView):
+    model = NewsStory
+    template_name = 'news/index.html'
+    def search(request):
+        if 'q' in request.GET:
+          #Get the selected category id 
+          sel_category = request.GET.get('category', None)
+          #If it exists, get the category object
+          if sel_category: 
+                category = get_object_or_404(Category, pk = sel_category)
+          query = request.GET['q']
+          results = Adv.objects.filter(title__icontains=query)
+          #If category objects exists filter the result set based on that
+          if category:
+                    results =results.filter(cate__name__icontains=category.name)
+       #   print results.query 
+        else:
+          query = ""
+          results = None
+          categories = Category.objects.all()
+        template = loader.get_template('search/search1.html')
+        context = Context({ 'query': query, 'results': results, 'city_list': ChoiceCity.objects.all(), 'categories':categories })
+        response = template.render(context)
+        return HttpResponse(response) 
 
 class StoryView(generic.DetailView):
     model = NewsStory
@@ -48,14 +93,21 @@ class userStory(generic.DetailView):
 
     slug_field = "username"
     slug_url_kwarg = "username"
+    success_url =reverse_lazy('users:profile')
+
 
 class categoryStoryView(generic.DetailView):
-    model = NewsStory
-    template_name = 'news/category.html'
-    context_object_name = 'story'
+    pass
+    # model = NewsStory
+    # template_name = 'news/category.html'
+    # context_object_name = 'story'
 
-    slug_field = "category_type"
-    slug_url_kwarg = "category_type"
+    # slug_field = "category_type"
+    # slug_url_kwarg = "category_type"
+
+#     @property
+#    def total_number(self):
+#        return self.category_type.all().count()
 
 class StoryViewEdit(generic.edit.UpdateView):
     form_class = UpdateStoryForm
@@ -66,6 +118,22 @@ class StoryViewEdit(generic.edit.UpdateView):
     context_object_name = 'story'
 
     success_url =reverse_lazy('news:index')
+
+class StoryViewDelete(generic.edit.DeleteView):
+    form_class = DeleteStoryForm
+    context_object_name = 'storyForm'
+
+    model = NewsStory
+    template_name = 'news/delete.html'
+    context_object_name = 'story'
+
+    success_url =reverse_lazy('news:index')
+
+    # def post(self, request, *args, **kwargs):
+    #     form = self.form_class(request.POST)
+    #     if form.is_valid():
+    #         form.delete()
+    #         return redirect('news:index')
 
     # def form_valid(self, form):
     #     form.instance.author = self.request.user
@@ -85,3 +153,9 @@ class StoryViewEdit(generic.edit.UpdateView):
 
 # https://samulinatri.com/blog/django-modelform-tutorial/
             # form = PostForm(request.POST)
+
+
+
+    # def my_view(request):
+    #     # form = StoryForm
+    #     return render_response('news/index.html',{'form': form})

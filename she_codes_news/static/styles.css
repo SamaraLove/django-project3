@@ -154,9 +154,9 @@ form textarea:hover{
     text-align: center; 
 }
 
-.helptext {
+/* .helptext {
     display: none;
-}
+} */
 
 form ul {
     display: none;

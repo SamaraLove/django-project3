@@ -4,19 +4,13 @@ from django.db import models
 
 class NewsStory(models.Model):
 
-    FR = 'French'
-    IT = 'Italian'
-    MA = 'Modern Australian'
-    Category_CHOICES = [
-    (FR, 'French'),
-    (IT, 'Italian'),
-    (MA, 'Modern Australian'),
-    ]
-    category_type = models.CharField(
-    max_length=20,
-    choices=Category_CHOICES,
-    default=MA,
+    GENDER = (
+    ('x', 'Male'),
+    ('y', 'Female'),
     )
+
+    gender = models.CharField(max_length=60, blank=True, default='',choices=GENDER,verbose_name="gender")
+
     
     title = models.CharField(max_length=200)
     # author = models.CharField(max_length=200)
@@ -33,3 +27,17 @@ class NewsStory(models.Model):
 
     # def __str__(self):
     #     return self.title
+
+    #     FR = 'French'
+    # IT = 'Italian'
+    # MA = 'Modern Australian'
+    # Category_CHOICES = [
+    # (FR, 'French'),
+    # (IT, 'Italian'),
+    # (MA, 'Modern Australian'),
+    # ]
+    # category_type = models.CharField(
+    # max_length=20,
+    # choices=Category_CHOICES,
+    # default=MA,
+    # )

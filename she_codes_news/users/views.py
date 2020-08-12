@@ -19,10 +19,10 @@ class CreateAccountView(generic.edit.CreateView):
 
 # class UserProfileView(generic.TemplateView):
 class UserProfileView(generic.edit.UpdateView):
-    #     """
-#     Processes requests for the settings page, where users
-#     can edit their profiles.
-#     """
+    """
+    Processes requests for the settings page, where users
+    can edit their profiles.
+    """
     model = User
     form_class = CustomUserChangeForm
     template_name = 'users/profile.html'

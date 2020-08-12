@@ -9,6 +9,8 @@
 
 
 {% if user.is_authenticated and user == story.author %}
+    <p><a href="{% url 'news:userStoryDelete' story.id %}">Delete</a></p>
+
     <div id="edit-story-form">
         <h2>Edit post</h2>
         <form action=""

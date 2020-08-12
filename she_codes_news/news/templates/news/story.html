@@ -13,11 +13,12 @@
     <h4> 
         <a href="{% url 'news:userStory' story.author %}">{{story.author}}</a>
     </h4>
-    <h4>Category: 
-        <a href="{% url 'news:categoryStory' story.category_type %}">{{story.category_type}}</a></h4>
+    <h4>Category:  {{story.gender}}</h4>
     
-    {% if user.is_authenticated %}
-        <p><a href="{% url 'news:userStory_edit' story.id %}">Edit</a></p>
+    {% if user.is_authenticated and user == story.author %}
+        <p><a href="{% url 'news:userStoryEdit' story.id %}">Edit</a></p>
+        <p><a href="{% url 'news:userStoryDelete' story.id %}">Delete</a></p>
+
     {% endif %}
 
     <div id="story-content">
@@ -32,3 +33,4 @@
 </div>
 
 {% endblock %}
+        <!-- <a href="{% url 'news:categoryStory' story.category_type %}">{{story.category_type}}</a></h4> -->

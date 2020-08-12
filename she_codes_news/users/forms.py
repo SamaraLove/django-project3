@@ -6,7 +6,7 @@ class CustomUserCreationForm(UserCreationForm):
 
     class Meta:
         model = CustomUser
-        fields = ['username','email', 'bio', 'location','birth_date']
+        fields = ['username','email', 'first_name', 'last_name','bio', 'location','birth_date', ]
         # fields = ['username','email', 'birth_date']
 
         widgets = {
@@ -61,15 +61,15 @@ class CustomUserChangeForm(UserChangeForm):
                 # 'is_staff': forms.HiddenInput(),
             }
 
-    def __init__(self, *args, **kwargs):
-        super(CustomUserChangeForm, self).__init__(*args, **kwargs)
-        self.fields['password'].help_text = self.fields['password'].help_text.format('../password/')
-        f = self.fields.get('user_permissions', None)
-        if f is not None:
-            f.queryset = f.queryset.select_related('content_type')
+    # def __init__(self, *args, **kwargs):
+    #     super(CustomUserChangeForm, self).__init__(*args, **kwargs)
+    #     self.fields['password'].help_text = self.fields['password'].help_text.format('../password/')
+    #     f = self.fields.get('user_permissions', None)
+    #     if f is not None:
+    #         f.queryset = f.queryset.select_related('content_type')
 
-    def clean_password(self):
-            return self.initial["password"]
+    # def clean_password(self):
+    #         return self.initial["password"]
 
    
      
