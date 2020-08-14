@@ -11,7 +11,11 @@
 
 <div id="all-stories">
     {% if object.stories %}
-    <p> Number of stories written by {{ object }}: {{object.stories.all|length}}! </p>
+    <div class="story-card", id="story-content">
+        <h3>{{ object }}'s story page</h3>
+        <p> Number of stories written by {{ object }}: {{object.stories.all|length}}! </p>
+
+    </div>
 
         {% for story in object.stories.all %}
             {% include "./storyCard.html" with story=story %}

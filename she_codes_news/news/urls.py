@@ -12,6 +12,6 @@ urlpatterns = [
     path('edit/<int:pk>/', views.StoryViewEdit.as_view(), name='userStoryEdit'),
     path('delete/<int:pk>/', views.StoryViewDelete.as_view(), name='userStoryDelete'),
     # path('category/<str:category_type>/', views.categoryStoryView.as_view(), name = 'categoryStory'),
-    path('filter/', views.StoryFilterView.as_view(), name = 'filter'),
+    path('filter3/', views.StoryFilterView.as_view(), name = 'filter'),
 
 ]

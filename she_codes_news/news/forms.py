@@ -3,7 +3,8 @@ from django.forms import ModelForm, SplitDateTimeField, SplitDateTimeWidget
 from .models import NewsStory
 
 class StoryForm(ModelForm):
-    image_link = forms.URLField(required=False,help_text='Enter URL to a direct image. Otherwise, a random image will be chosen for you')
+    image_link = forms.URLField(required=False)
+    # ,help_text='Enter URL to a direct image. Otherwise, a random image will be chosen for you')
             
     pub_date = SplitDateTimeField(
 		# use split date time field to allow the user to input both date and time
@@ -20,7 +21,7 @@ class StoryForm(ModelForm):
 
     class Meta:
         model = NewsStory
-        fields = ['title', 'pub_date', 'content','image_link', 'gender']
+        fields = ['title', 'pub_date', 'content','image_link', 'category']
         widgets = {
 
             'title': forms.TextInput(
@@ -34,10 +35,8 @@ class StoryForm(ModelForm):
             'content': forms.Textarea(attrs={'size': 10,  'id': 'form-content','class': "form-item",'placeholder': 'Enter a rivoting story',}
             ),
             'image_link': forms.TextInput(attrs={'size': 10, 'id': 'form-link','class': "form-item",'placeholder': 'Enter URL to a direct image. Otherwise, a random image will be chosen for you',},),
-            # 'category_type':forms.CharField(attrs={
             # forces you to upload with url
             # want to verify it exists. Django automatically does this 
-            # 'cuisine_type' = forms.CharField(max_length=10),
         }
 
     # def delete(self, request, *args, **kwargs):
@@ -66,7 +65,7 @@ class UpdateStoryForm(ModelForm):
 
     class Meta:
         model = NewsStory
-        fields = ['title', 'pub_date', 'content','image_link','gender']
+        fields = ['title', 'pub_date', 'content','image_link','category']
         widgets = {
 
             'title': forms.TextInput(

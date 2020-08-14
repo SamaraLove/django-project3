@@ -21,7 +21,7 @@ class AddStoryView(generic.CreateView):
 
 class IndexView(generic.ListView):
     template_name = 'news/index.html'
-
+    
     def get_queryset(self):
         '''Return all news stories.'''
         return NewsStory.objects.all()        
@@ -35,7 +35,7 @@ class IndexView(generic.ListView):
         return context
 
 class StoryFilterView(generic.ListView):
-    template_name = 'news/index.html'
+    template_name = 'news/filter3.html'
     context_object_name = 'all_stories'
 
     def get_queryset(self):
@@ -43,7 +43,7 @@ class StoryFilterView(generic.ListView):
         qs = NewsStory.objects.all()   
         q = self.request.GET.get("category")
         if q: 
-            qs = qs.filter(category_type=q)
+            qs = qs.filter(category=q)
         return qs
 
     def get_context_data(self, **kwargs):
@@ -52,33 +52,6 @@ class StoryFilterView(generic.ListView):
         print(context)
         return context
 
-
-
-class CategoryHome(generic.ListView):
-    model = NewsStory
-    template_name = 'news/index.html'
-    def search(request):
-        if 'q' in request.GET:
-          #Get the selected category id 
-          sel_category = request.GET.get('category', None)
-          #If it exists, get the category object
-          if sel_category: 
-                category = get_object_or_404(Category, pk = sel_category)
-          query = request.GET['q']
-          results = Adv.objects.filter(title__icontains=query)
-          #If category objects exists filter the result set based on that
-          if category:
-                    results =results.filter(cate__name__icontains=category.name)
-       #   print results.query 
-        else:
-          query = ""
-          results = None
-          categories = Category.objects.all()
-        template = loader.get_template('search/search1.html')
-        context = Context({ 'query': query, 'results': results, 'city_list': ChoiceCity.objects.all(), 'categories':categories })
-        response = template.render(context)
-        return HttpResponse(response) 
-
 class StoryView(generic.DetailView):
     model = NewsStory
     template_name = 'news/story.html'
@@ -86,6 +59,7 @@ class StoryView(generic.DetailView):
 
 class userList(generic.ListView):
     model = User
+    template_name = 'news/user-list.html'
 
 class userStory(generic.DetailView):
     model = User

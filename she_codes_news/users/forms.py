@@ -20,7 +20,11 @@ class CustomUserCreationForm(UserCreationForm):
             'bio': forms.Textarea(attrs={'size': 10,  'id': 'form-bio','class': "form-item",'placeholder': 'Enter a short bio about yourself',}
             ),   
             'location': forms.TextInput(attrs={'id': 'form-location','class': "form-item",'placeholder': 'Enter your city name',}
-            ),            
+            ),
+            'first_name': forms.TextInput(attrs={'id': 'form-first_name','class': "form-first_name",'placeholder': 'Enter your first name',}
+            ),
+            'last_name': forms.TextInput(attrs={'id': 'form-last_name','class': "form-last_name",'placeholder': 'Enter your last name',}
+            ),                     
         }
     
     def save(self, commit=True):
@@ -33,8 +37,8 @@ class CustomUserCreationForm(UserCreationForm):
     # class ProfileForm()
 # forms.ModelForm
 class CustomUserChangeForm(UserChangeForm):
-    # password = ReadOnlyPasswordHashField(
-    #     label="Password",
+    password = ReadOnlyPasswordHashField(
+        label="",help_text="")
     #     help_text="Raw passwords are not stored, so there is no way to see "
     #               "this user's password, but you can change the password "
     #               "using <a href=\"password/\">this form</a>.")
@@ -53,7 +57,7 @@ class CustomUserChangeForm(UserChangeForm):
                 ),
                 'bio': forms.Textarea(attrs={'size': 10,  'id': 'form-bio','class': "form-item",'placeholder': 'Enter a brief description',}
                 ),     
-                # 'password': forms.HiddenInput(),
+                'password': forms.HiddenInput(),
                 # 'groups': forms.HiddenInput(),
                 # 'is_superuser': forms.HiddenInput(),
                 # 'user_permissions': forms.HiddenInput(),

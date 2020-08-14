@@ -28,20 +28,125 @@ h2 {
    font-family: 'Montserrat Subrayada', sans-serif; 
 }
 
-h3 {
+/* h3 {
     font-size: 2rem;
     margin: 0;
 }
+h4 {
+    font-size: 1.5rem;
+    margin: 0;
+} */
 
 #header-text {
-    padding-left: 20%;
-    flex-basis: 60%;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
+}
     /* if small on phone, left align header text */
     /* Change at 1200 */
+
+#filter-text {
+    text-align: end;
 }
 
+#index-text {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#index-auth{
+    text-align: start;
+
+}
+
+#filter-auth {
+    text-align: center;
+}
+
+@media(min-width: 1301px) { 
+
+    #header-text {
+        justify-content: center;
+        padding-left: 20%;
+        flex-basis: 60%;
+    }
+    nav {
+        flex-basis: 20%;
+    }
+    /* a, p {
+        font-size: 30px;
+    }
+    */
+    h3 {
+        font-size: 2rem;
+        margin: 0;
+    }
+    h4 {
+        font-size: 1.5rem;
+        margin: 0;
+    }
+
+#index-text {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+}
+}
+@media only screen and (max-width: 1300px) and (min-width: 1001px) { 
+    #header-text {
+        align-items: left;
+        padding-left: 2%;
+        flex-basis: 100%;
+    }
+    nav {
+        flex-basis: 25%;
+    }
+
+#index-text {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+}
+@media(max-width: 1000px) { 
+    #header-text {
+        align-items: left;
+        padding-left: 2%;
+        flex-basis: 100%;
+    }
+    nav {
+        flex-basis: 35%;
+    }
+    /* a, p {
+        font-size: 10px;
+    }*/
+    h3 {
+        font-size: 1.5rem;
+    }
+    h4 {
+        font-size: 1rem;
+    } 
+    
+    #index-text {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
+    }
+    #filter-text {
+        text-align: center;
+    }
+    
+    #index-auth{
+        text-align: center;
+    }
+    
+}
 #New-Story {
     display: flex;
     justify-content: center;
@@ -55,7 +160,6 @@ h3 {
     text-align: center;
 }
 nav {
-    flex-basis: 20%;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -69,7 +173,6 @@ a {
 
 a, p {
     font-family: monospace;
-    font-size: 30px;
 }
 
 /* ################################################################################################################################## */
@@ -80,8 +183,6 @@ form {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     padding: 5px;
 }
 
@@ -102,7 +203,7 @@ form label {
     min-height: 120px;
 }
 
-#form-author, #form-content, #form-author, #form-title, #form-link {
+#form-author, #form-content, #form-author, #form-title, #form-bio, #form-link, #id_image_link {
     min-width: 705px;
 }
 
@@ -111,10 +212,27 @@ form label {
     /* max-width: 200px; */
 }
 
-#id_username, #id_email, #form-bio, #form-location, #id_password1, #id_password2, #id_password {
+#id_username, #id_first_name, #id_last_name, #id_email, #form-birth_date, #form-bio, #form-location, #id_password1, #id_password2, #id_password {
     min-width: 705px;
 }
 
+#id_gender {
+    font-size: 20px;
+    font-family: monospace;
+}
+
+label #id_gender {
+    align-items: left;
+}
+
+.helptext {
+    text-align: center;
+    font-style: italic;
+    display: block;
+    white-space: pre-line;
+    font-size: 20px;
+    /* Makes a new line above */
+}
 
 form input, textarea {
     border: 4px solid #DFC5FE;
@@ -123,9 +241,31 @@ form input, textarea {
     font-size: 18px;
     border-radius: 5px;
     min-height: 40px; 
-    width: 350px;
+    font-family: monospace;
 }
 
+@media(min-width: 1280px) { 
+
+    form input, textarea {
+        width: 350px;
+    }
+    form {
+        justify-content: center;
+        align-items: center;
+    }
+
+}
+
+@media(max-width: 1279px) { 
+    form input, textarea {
+        width: 100%;
+    }
+    #filter-script #submit-button {
+        width: 200px;
+
+    }
+
+}
 form input:hover{
     border: 4px solid #818181;
 }
