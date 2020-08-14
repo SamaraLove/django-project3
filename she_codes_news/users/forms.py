@@ -45,7 +45,7 @@ class CustomUserChangeForm(UserChangeForm):
 
     class Meta:
         model = CustomUser
-        fields = ['email', 'bio', 'location','birth_date']
+        fields = ['first_name', 'last_name','email', 'bio', 'location','birth_date']
         # fields = ['username','first_name', 'last_name', 'date_joined','email', 'bio', 'location','birth_date']
         # fields = '__all__'
         widgets = {
@@ -57,6 +57,10 @@ class CustomUserChangeForm(UserChangeForm):
                 ),
                 'bio': forms.Textarea(attrs={'size': 10,  'id': 'form-bio','class': "form-item",'placeholder': 'Enter a brief description',}
                 ),     
+                # 'first_name': forms.TextInput(attrs={'id': 'form-first_name','class': "form-first_name",'placeholder': 'Enter your first name',}
+                # ),
+                # 'last_name': forms.TextInput(attrs={'id': 'form-last_name','class': "form-last_name",'placeholder': 'Enter your last name',}
+                # ),   
                 'password': forms.HiddenInput(),
                 # 'groups': forms.HiddenInput(),
                 # 'is_superuser': forms.HiddenInput(),

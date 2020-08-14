@@ -13,13 +13,13 @@
 
         <h3> Hi {{ request.user }}! </h3><br>
         <p> Username: {{ user.username }}</p> <br>
-        <p> First Name: {{ request.user.first_name }} </p><br>
-        <p> Last Name: {{ request.user.last_name }} </p><br>
+        <!-- <p> First Name: {{ request.user.first_name }} </p><br>
+        <p> Last Name: {{ request.user.last_name }} </p><br> -->
         <p> Date joined: {{ user.date_joined }}</p> <br>
 
         <p> Number of stories written by {{ user.username }}: {{object.stories.all|length}}! </p><br>
         <p>See the stories you've written 
-        <a href="{% url 'news:userStory' user.username %}">here</a></p> <br>
+        <a id="here-tag" href="{% url 'news:userStory' user.username %}">here</a></p> <br>
 
         <!-- 
         <p> Email: {{ user.email }}</p><br>
@@ -40,9 +40,10 @@
                 </p>
                 <button type="submit" id="submit-button">Save Changes</button>
             </form>
+            <p> If you want to change your username details, please send an email request to admin at admin@website.com </p><br>
+
         </div>
         
-        <p> If you want to change your username or name details, please send an email request to admin at admin@website.com </p><br>
 
     </div>
     {% else %}

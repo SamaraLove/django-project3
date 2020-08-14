@@ -212,7 +212,7 @@ form label {
     /* max-width: 200px; */
 }
 
-#id_username, #id_first_name, #id_last_name, #id_email, #form-birth_date, #form-bio, #form-location, #id_password1, #id_password2, #id_password {
+#id_username, #id_first_name, #id_last_name, #id_email, #id_location, #id_birth_date,#form-birth_date, #form-bio, #form-location, #id_password1, #id_password2, #id_password {
     min-width: 705px;
 }
 
@@ -318,3 +318,7 @@ div #id_password {
 p label #id_password {
     display: none;
 } */
+
+#here-tag {
+    color: darkcyan;
+}
