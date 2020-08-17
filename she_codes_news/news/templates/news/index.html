@@ -9,23 +9,22 @@
 
 <div id="index-text">
 
-<div id="index-auth">
+    <div id="index-auth">
 
+        {% if user.is_authenticated %}
+            <a id="New-Story" href="{% url 'news:newsStory' %}">Write New Story</a>
+        {% else %}
+            <a href="{% url 'login' %}">Please login or create an account to write a news story.</a><br><br>
+        {% endif %}
+    </div>
 
-    {% if user.is_authenticated %}
-    <a id="New-Story" href="{% url 'news:newsStory' %}">Write New Story</a>
-    {% else %}
-    <a href="{% url 'login' %}">Please login or create an account to write a news story.</a><br><br>
-    {% endif %}
-</div>
     <div id="filter-text">
-
-   <p>Search by<a id="here-tag" href="{% url 'news:filter' %}">category</a><br></p>
-    
-   <p>View<a id="here-tag" href="{% url 'news:userList' %}"> authors</a>
-   </p>
+        <p>Search by<a id="click-tag" href="{% url 'news:filter' %}">category</a><br></p>
+            
+        <p>View<a id="click-tag" href="{% url 'news:userList' %}"> authors</a></p>
     </div>
 </div>
+
     <h2>Latest News</h2>
     <div id="latest-stories">
         {% if latest_stories %}
@@ -50,6 +49,3 @@
     </div>
 
 {% endblock %}
-          <!-- {% for category in Category_CHOICES %} -->
-            <!-- <option value="{{category.id}}">{{category.name}}</option> -->
-            <!-- {% endfor %} -->

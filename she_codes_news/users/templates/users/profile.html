@@ -18,8 +18,8 @@
         <p> Date joined: {{ user.date_joined }}</p> <br>
 
         <p> Number of stories written by {{ user.username }}: {{object.stories.all|length}}! </p><br>
-        <p>See the stories you've written 
-        <a id="here-tag" href="{% url 'news:userStory' user.username %}">here</a></p> <br>
+        <p>See the stories you've written <a id="click-tag" href="{% url 'news:userStory' user.username %}">here</a></p> <br>
+        <p>Edit your profile <a id="click-tag" href="{% url 'users:profileEdit' user.username %}">here</a></p> <br>
 
         <!-- 
         <p> Email: {{ user.email }}</p><br>
@@ -28,7 +28,7 @@
 
     <!-- <img src="images/{{user.get_profile.avatar }}"> -->
 
-
+<!-- 
         <div id="form-editaccount">    
             <h2> Edit your details </h2>
             <p id="edit-account-p"></p>  
@@ -42,13 +42,13 @@
             </form>
             <p> If you want to change your username details, please send an email request to admin at admin@website.com </p><br>
 
-        </div>
+        </div> -->
         
 
     </div>
     {% else %}
     <div id="user-create"></div>
-        <a href="{% url 'login' %}">Please login or create an account to write a news story.</a>
+        <a href="{% url 'login' %}">Please login or create an account to write or edit a news story.</a>
         <a href="{% url 'users:createAccount' %}">Create Account</a>
 
     </div>

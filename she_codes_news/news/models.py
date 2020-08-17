@@ -12,7 +12,7 @@ class NewsStory(models.Model):
     # ('No Category Assigned', 'No Category Assigned'),
     )
 
-    category = models.CharField(max_length=60, blank=True, default='No Category Assigned',choices=CHOICES,verbose_name="gender")
+    category = models.CharField(max_length=60, blank=True, default='No Category Assigned',choices=CHOICES,verbose_name="category")
 
     
     title = models.CharField(max_length=200)

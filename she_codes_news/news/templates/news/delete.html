@@ -17,6 +17,8 @@
 
             <button type="submit" id="submit-button">Delete</button><br>
             <a href="{% url 'news:userStoryEdit' story.id %}">Cancel</a>
+            <a href="{% url 'news:userStoryEdit' story.id %}">Edit</a>
+
         </form>
     </div>
 
@@ -25,8 +27,7 @@
         <h4> 
             <a href="{% url 'news:userStory' story.author %}">{{story.author}}</a>
         </h4>
-        <h4>Category:<a href="{% url 'news:categoryStory' story.category_type %}">{{story.category_type}}</a></h4>
-        <p><a href="{% url 'news:userStoryEdit' story.id %}">Edit</a></p>
+        <h4>Category:<a href="http://127.0.0.1:8000/news/filter/?category={{story.category}}">{{story.category}}</a></h4>
 
         <div id="story-content">
             <!-- <img src="{% static '/news/images/placeholder-5.jpg' %}"> -->

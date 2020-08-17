@@ -23,7 +23,7 @@
     </div>
 
 {% else %}
-    <a href="{% url 'login' %}">Please login or create an account to write/edit a news story.</a>
+    <a href="{% url 'login' %}">You can only edit your own stories. Please login or create an account to write/edit a news story.</a>
 {% endif %}
 
 {% endblock %}

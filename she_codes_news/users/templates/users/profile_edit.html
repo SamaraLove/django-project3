@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}    
+
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css" href="{% static 'news/styles.css' %}">
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated and user == request.user %}
+    <div id="user-profile">
+    <p>Return to profile page <a id="click-tag" href="{% url 'users:profile' user.username %}">here</a></p> <br>
+
+    <div id="form-editaccount">    
+        <h2> Edit your details </h2>
+        <p id="edit-account-p"></p>  
+        <form method ="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <p>
+                <a href="{% url 'password_change' %}">Change Password</a>
+            </p>
+            <button type="submit" id="submit-button">Save Changes</button>
+        </form>
+        <p> If you want to change your username details, please send an email request to admin at admin@website.com </p><br>
+
+    </div>
+        
+
+    </div>
+{% else %}
+    <div id="user-create"></div>
+        <a href="{% url 'login' %}">Please login or create an account to write or edit a news story.</a>
+        <a href="{% url 'users:createAccount' %}">Create Account</a>
+
+    </div>
+{% endif %}
+
+{% endblock %}

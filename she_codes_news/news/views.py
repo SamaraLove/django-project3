@@ -35,8 +35,9 @@ class IndexView(generic.ListView):
         return context
 
 class StoryFilterView(generic.ListView):
-    template_name = 'news/filter3.html'
+    template_name = 'news/filter.html'
     context_object_name = 'all_stories'
+    success_url =reverse_lazy('news:index')
 
     def get_queryset(self):
         '''Return all news stories.'''
@@ -67,11 +68,10 @@ class userStory(generic.DetailView):
 
     slug_field = "username"
     slug_url_kwarg = "username"
-    success_url =reverse_lazy('users:profile')
+    # success_url =reverse_lazy('users:profile')
 
-
-class categoryStoryView(generic.DetailView):
-    pass
+# class categoryStoryView(generic.DetailView):
+#     pass
     # model = NewsStory
     # template_name = 'news/category.html'
     # context_object_name = 'story'
@@ -92,6 +92,7 @@ class StoryViewEdit(generic.edit.UpdateView):
     context_object_name = 'story'
 
     success_url =reverse_lazy('news:index')
+    # why can't I do news:story here
 
 class StoryViewDelete(generic.edit.DeleteView):
     form_class = DeleteStoryForm
