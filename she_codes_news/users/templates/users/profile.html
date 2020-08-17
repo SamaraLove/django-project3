@@ -7,21 +7,36 @@
 
 {% block content %}
 
-    {% if user.is_authenticated and user == request.user %}
+    <!-- {% if request.user.is_authenticated and user == request.user %} -->
     <div id="user-profile">
-        <h2> Account Profile </h2><br>
 
-        <h3> Hi {{ request.user }}! </h3><br>
-        <p> Username: {{ user.username }}</p> <br>
-        <!-- <p> First Name: {{ request.user.first_name }} </p><br>
-        <p> Last Name: {{ request.user.last_name }} </p><br> -->
-        <p> Date joined: {{ user.date_joined }}</p> <br>
+        
 
-        <p> Number of stories written by {{ user.username }}: {{object.stories.all|length}}! </p><br>
-        <p>See the stories you've written <a id="click-tag" href="{% url 'news:userStory' user.username %}">here</a></p> <br>
-        <p>Edit your profile <a id="click-tag" href="{% url 'users:profileEdit' user.username %}">here</a></p> <br>
+        {% if request.user.is_authenticated and request.user.username != object.username %}
+        <!-- object: {{object.username}}
+        user: {{request.user.username}} -->
+
+            <h2> {{object}} Account Profile </h2><br>
+
+            <p> Username: {{ object.username }}</p> <br>
+            <p> Date joined: {{ object.date_joined }}</p> <br>
+            <p> Number of stories written by {{ object.username }}: {{object.stories.all|length}}! </p><br>
+            <p>See the stories {{ object.username }} has written <a id="click-tag" href="{% url 'news:userStory' object.username %}">here</a></p> <br>
+        
+        {% elif request.user.username == object.username %}
+
+            <h2>  Account Profile </h2><br>
+            <h3> Hi {{ request.user }}! </h3><br>
+
+            <p> Username: {{ user.username }}</p> <br>
+            <p> Number of stories written by {{ user.username }}: {{user.stories.all|length}}! </p><br>
+            <p>See the stories you've written <a id="click-tag" href="{% url 'news:userStory' object.username %}">here</a></p> <br>
+            <p>Edit your profile <a id="click-tag" href="{% url 'users:profileEdit' object.username %}">here</a></p> <br>
+        {% endif %}
 
         <!-- 
+                    <p> First Name: {{ request.user.first_name }} </p><br>
+        <p> Last Name: {{ request.user.last_name }} </p><br>
         <p> Email: {{ user.email }}</p><br>
         <p> Birth date: {{ user.birth_date }} </p><br>
         <p> Location: {{ user.location }} </p><br> -->
@@ -46,12 +61,12 @@
         
 
     </div>
-    {% else %}
+    <!-- {% else %}
     <div id="user-create"></div>
         <a href="{% url 'login' %}">Please login or create an account to write or edit a news story.</a>
         <a href="{% url 'users:createAccount' %}">Create Account</a>
 
     </div>
-    {% endif %}
+    {% endif %} -->
 
 {% endblock %}
