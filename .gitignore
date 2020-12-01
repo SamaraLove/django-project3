@@ -1,4 +1,9 @@
+### Django ###
 venv/*
 __pycache__/
 *.sqlite3
 *.vscode
+*.log
+*.pot
+*.pyc
+local_settings.py
