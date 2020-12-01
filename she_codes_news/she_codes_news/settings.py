@@ -31,6 +31,7 @@ SECRET_KEY =  os.environ.get(
 # DEBUG = True
 DEBUG = os.environ.get('DJANGO_DEBUG') != 'False'
 ALLOWED_HOSTS = ['*']
+CORS_ORIGIN_ALLOW_ALL = True
 
 
 # Application definition
@@ -38,6 +39,7 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     'news.apps.NewsConfig',
     'django.contrib.admin',
+    'corsheaders',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -51,6 +53,7 @@ AUTH_USER_MODEL = 'users.CustomUser'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
