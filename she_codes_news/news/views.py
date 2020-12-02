@@ -35,7 +35,7 @@ class IndexView(generic.ListView):
         return context
 
 class StoryFilterView(generic.ListView):
-    template_name = 'news/filter3.html'
+    template_name = 'news/filter.html'
     context_object_name = 'all_stories'
 
     def get_queryset(self):

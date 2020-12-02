@@ -7,48 +7,54 @@
 
 {% block content %}
 
-    {% if user.is_authenticated and user == request.user %}
-    <div id="user-profile">
-        <h2> Account Profile </h2><br>
+    {% comment %} {% if object.username == user.username and user.is_authenticated  %} {% endcomment %}
+        {% if object.username == user.username %}
+            <div id="user-profile">
+                <h2> Account Profile </h2><br>
 
-        <h3> Hi {{ request.user }}! </h3><br>
-        <p> Username: {{ user.username }}</p> <br>
-        <!-- <p> First Name: {{ request.user.first_name }} </p><br>
-        <p> Last Name: {{ request.user.last_name }} </p><br> -->
-        <p> Date joined: {{ user.date_joined }}</p> <br>
+                <h3> Hi {{ object.username }}! </h3><br>
+                <p> Username: {{ object.username }}</p> <br>
+                <!-- <p> First Name: {{ request.user.first_name }} </p><br>
+                <p> Last Name: {{ request.user.last_name }} </p><br> -->
+                <p> Date joined: {{ user.date_joined }}</p> <br>
+                <p> Number of stories written by {{ user.username }}: {{object.stories.all|length}}! </p><br>
+                <p>See the stories you've written 
+                <a href="{% url 'news:userStory' user.username %}">here</a></p> <br>
+                <!-- 
+                <p> Email: {{ user.email }}</p><br>
+                <p> Birth date: {{ user.birth_date }} </p><br>
+                <p> Location: {{ user.location }} </p><br> -->
 
-        <p> Number of stories written by {{ user.username }}: {{object.stories.all|length}}! </p><br>
-        <p>See the stories you've written 
-        <a href="{% url 'news:userStory' user.username %}">here</a></p> <br>
+            <!-- <img src="images/{{user.get_profile.avatar }}"> -->
 
-        <!-- 
-        <p> Email: {{ user.email }}</p><br>
-        <p> Birth date: {{ user.birth_date }} </p><br>
-        <p> Location: {{ user.location }} </p><br> -->
-
-    <!-- <img src="images/{{user.get_profile.avatar }}"> -->
-
-
-        <div id="form-editaccount">    
-            <h2> Edit your details </h2>
-            <p id="edit-account-p"></p>  
-            <form method ="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <p>
-                    <a href="{% url 'password_change' %}">Change Password</a>
-                </p>
-                <button type="submit" id="submit-button">Save Changes</button>
-            </form>
-        </div>
-        
-        <!-- <p> If you want to change your username or name details, please send an email request to admin at admin@website.com </p><br> -->
-        <p> If you want to change your username, please send an email request to admin at admin@website.com </p><br>
-
-    </div>
+                <div id="form-editaccount">    
+                    <h2> Edit your details </h2>
+                    <p id="edit-account-p"></p>  
+                    <form method ="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <p>
+                            <a href="{% url 'password_change' %}">Change Password</a>
+                        </p>
+                        <button type="submit" id="edit-button">Save Changes</button>
+                    </form>
+                </div>
+                <p> If you want to change your username, please send an email request to admin at admin@sootysblog.com </p><br>
+            </div>
+        {% else %}
+            <div> 
+                <p> Username: {{ object.username }}</p> <br>
+                <p> Date joined: {{ object.date_joined }}</p> <br>
+                <p> Number of stories written by {{ object.username }}: {{object.stories.all|length}}! </p><br>
+                <p>See the stories {{ object.username }}'s written 
+                <a href="{% url 'news:userStory' object.username %}">here</a></p> <br>
+            </div>
+        {% endif %}
+    {% if user.is_authenticated  %}
     {% else %}
     <div id="user-create"></div>
-        <a href="{% url 'login' %}">Please login or create an account to write a news story.</a>
+    <br>
+        <a href="{% url 'login' %}">Login or create an account to write a news story.</a>
         <a href="{% url 'users:createAccount' %}">Create Account</a>
 
     </div>
